@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-# Create your views here.
+from .models import Contact
+
+
+def index(request, username):
+    contact = get_object_or_404(Contact, user_name=username)
+    return render(request, 'index.html', {'contact': contact})
