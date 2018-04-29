@@ -1,8 +1,7 @@
-from django.shortcuts import get_object_or_404, render
-
+from rest_framework import viewsets
 from .models import Contact
+from .serializers import ContactSerializer
 
-
-def index(request, username):
-    contact = get_object_or_404(Contact, user_name=username)
-    return render(request, 'index.html', {'contact': contact})
+class ContactViewSet(viewsets.ModelViewSet):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
